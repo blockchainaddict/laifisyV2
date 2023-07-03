@@ -1,0 +1,66 @@
+.posts-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+  
+    .posts-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+  
+      div {
+        width: 300px;
+        height: 200px;
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+  
+        a {
+          color: #333;
+          text-decoration: none;
+          font-size: 1.2em;
+          font-weight: 600;
+          transition: color 0.3s ease-in-out;
+          padding: 90px;
+  
+          &:hover {
+            color: #0095f6;
+          }
+        }
+      }
+  
+      .tiktok-posts-link {
+
+        background: linear-gradient(45deg, 
+          rgb(105, 201, 208),   // Neon Blue
+          rgb(0, 0, 0)         // Black
+        );
+      }
+  
+      .ig-posts-link {
+        background: linear-gradient(45deg, 
+        rgb(250, 216, 89),    // Yellow
+        rgb(243, 115, 113),  // Red
+        rgb(193, 53, 132),   // Dark pink
+        rgb(123, 50, 148),   // Purple
+        rgb(32, 76, 153),    // Dark Blue
+        rgb(18, 128, 185)    // Light Blue
+  );
+      }
+  
+      .pinterest-posts-link {
+        background: linear-gradient(45deg, 
+        rgb(189, 8, 28),  // Pinterest Red
+        rgb(255, 255, 255)  // White
+      );      }
+    }
+  }

@@ -1,0 +1,97 @@
+// App Colors ---------------------------------------
+$app-primary: #3498db; // Primary color of your app
+$app-secondary: #482c50; // Secondary color of your app
+
+// Gradients
+$app-gradient-1: linear-gradient(to right, #12c2e9, #c471ed, #f64f59); 
+
+// End of App Colors --------------------------------
+
+.home-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+  
+    p {
+      color: #666;
+      font-size: 18px;
+    }
+
+    .app-name{
+            position: relative;
+            color: $app-primary;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px $app-secondary;
+          
+            &:hover {
+              color: $app-secondary;
+              text-shadow: 2px 2px $app-primary;
+            }
+            
+            h1{
+                font-size: 2em;
+                text-align: center;
+            }
+            
+          
+    }
+
+    .hero{
+        margin-bottom: 40px;
+        text-align: center;
+
+        .hero-content{
+            margin: 10px 0;
+        }
+        h1 {
+            color: $app-primary;
+            font-size: 24px;
+            margin-bottom: 20px;
+    }
+    }
+  
+    .social-medias-list-wrapper {
+      padding: 20px;
+      border: 1px solid $app-primary;
+      border-radius: 10px;
+      border-width: 2px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+      background-color: rgba($color: $app-primary, $alpha: 0.1);
+
+
+      h3 {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+  
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 10px;
+  
+        li {
+          color: #666;
+          font-size: 16px;
+          margin-bottom: 5px;
+          font-weight: 600;
+  
+          a {
+            color: #0095f6;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+  
+            &:hover {
+              color: #0077b6;
+            }
+          }
+        }
+      }
+    }
+  }
+  

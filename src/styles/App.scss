@@ -1,0 +1,103 @@
+// fonts
+$app-font: 'Roboto', sans-serif; // Change this to any Google font you'd like
+
+// imports
+@import './modules/Home.scss';
+@import './modules/Header.scss';
+@import './modules/GenericSocialMedia.scss';
+@import './modules/Create.scss';
+@import './modules/Posts.scss';
+
+// App Colors ---------------------------------------
+$app-primary: #3498db; // Primary color of your app
+$app-secondary: #482c50; // Secondary color of your app
+
+// Gradients
+$app-gradient-1: linear-gradient(to left, #2193b0, #6dd5ed);
+; 
+
+// End of App Colors --------------------------------
+
+body {
+  font-family: $app-font;
+}
+
+*{
+    margin: 0;
+}
+
+h1{
+    margin: 0 0 20px 0;
+}
+h2{
+    margin: 0 0 14px 0;
+}
+h3{
+    margin: 0 0 10px 0;
+}
+
+// Generic Button
+.button-1 {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: $app-gradient-1;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: #0077b6;
+    }
+  }
+.button-2 {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #9c00f6;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: #0077b6;
+    }
+  }
+
+
+// Tiktok
+.tiktok_org_post_wrapper {
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+    }
+  
+    .tiktok-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+  
+      h3 {
+        margin: 0;
+        color: #333;
+        font-size: 18px;
+      }
+  
+    }
+  
+    .post-content {
+      p {
+        margin: 0 0 10px;
+        color: #666;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  
