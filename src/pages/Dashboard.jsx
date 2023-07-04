@@ -65,7 +65,7 @@ const Dashboard = () => {
 
   return (
     <div className='dashboard-wrapper'>
-        DBOARD
+        <h2 style={{textAlign:'center', margin:'40px 0'}}>Dashboard</h2>
 
         {/* filters */}
         <div className="filters">
@@ -104,9 +104,10 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <section>
+          <h2> Content </h2>
+
+          <section className='dashboard-posts-section'>
             
-            <h2> Content </h2>
 
             {allPosts ? allPosts
                 .filter(item => {

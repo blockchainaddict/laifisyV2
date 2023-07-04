@@ -4,6 +4,7 @@ $app-font: 'Roboto', sans-serif; // Change this to any Google font you'd like
 // imports
 @import './modules/Home.scss';
 @import './modules/Header.scss';
+@import './modules/Dashboard.scss';
 @import './modules/GenericSocialMedia.scss';
 @import './modules/Create.scss';
 @import './modules/Posts.scss';
@@ -63,6 +64,26 @@ h3{
     }
   }
 
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(38, 106, 135, 0.95); /* semi-transparent background */
+    z-index: 1000; /* make sure it's on top of other page content */
+
+    max-width: 80%;    height: fit-content;
+    margin: auto;
+    padding: 60px;
+    border-radius: 20px;
+
+    
+  }
+
 
 // Tiktok
 .tiktok_org_post_wrapper {
@@ -93,7 +114,7 @@ h3{
     .post-content {
       p {
         margin: 0 0 10px;
-        color: #666;
+        color: #ffffff;
         &:last-child {
           margin-bottom: 0;
         }

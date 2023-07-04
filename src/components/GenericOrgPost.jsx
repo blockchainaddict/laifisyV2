@@ -17,10 +17,12 @@ const GenericOrgPost = (props) => {
       </div>
 
       {isOpen ? (
-        <div className="post-content">
-          <p> <b>Audio name:</b> {props.audio}</p>
-          <p> <b>Description:</b>  {props.description}</p>
-          <button className="button-2">Visualize</button>
+        <div className="overlay">
+          <div className="post-content">
+            <p> <b>Audio name:</b> {props.audio}</p>
+            <p> <b>Description:</b>  {props.description}</p>
+            <button className="button-2" onClick={() => setIsOpen(!isOpen)}>Close</button>
+          </div>
         </div>
       ) : null}
     </div>
