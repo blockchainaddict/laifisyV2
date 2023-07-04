@@ -2,19 +2,19 @@ const IG = [
     {
         title: "1 IG Post",
         audio: "IG Audio name",
-        script: "Escena 1: El video comienza con el personaje animado 'Bam' aplaudiendo y riendo. Escena 2: Se muestra un texto en pantalla que dice: '¡La risa es mágica para los peques!'. Escena 3: Aparece el personaje animado 'Nesho' bailando de manera graciosa y riendo. Escena 4: Se muestra un texto en pantalla que dice: 'La risa promueve el bienestar y la felicidad de tu peque'.",
+        description: "Super instagram post with some #hashtags #children #happy",
         date: '03/07/2023',
         time: '14:30',
-        social: "ig",
+        social: "IG",
         format: "post"
     },
     {
-        title: "2 IG Post",
+        title: "2 IG Story",
         audio: "IG Audio name",
-        script: "Escena 1: El video comienza con el personaje animado 'Bam' aplaudiendo y riendo. Escena 2: Se muestra un texto en pantalla que dice: '¡La risa es mágica para los peques!'. Escena 3: Aparece el personaje animado 'Nesho' bailando de manera graciosa y riendo. Escena 4: Se muestra un texto en pantalla que dice: 'La risa promueve el bienestar y la felicidad de tu peque'.",
+        description: "Scene of a girl sitting in the sunset",
         date: '03/07/2023',
         time: '19:30',
-        social: "ig",
+        social: "IG",
         format: "story"
     },
 ];

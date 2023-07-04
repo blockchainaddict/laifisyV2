@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Create from './pages/Create';
 import SocialMedia from './pages/SocialMedia';
 import Posts from './pages/Posts';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" exact={true} element={<Home/>}/>
 
         {/* App */}
+        <Route path="/dashboard" exact={true}  element={<Dashboard/>}/>
         <Route path="/create" exact={true}  element={<Create/>}/>
         <Route path="/posts" exact={true}  element={<Posts/>}/>
 
