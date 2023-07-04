@@ -15,9 +15,9 @@ const Home = () => {
         <h1>Social Media Organizer</h1>
         <h4>Your Social Media Management Assistant</h4>
         <div className="hero-content">
-          <p>Organize and share all your content planning</p>
-          <p>Create the best content with the help of AI</p>
-          <p>Make your life easier!</p>
+          <p>✓ Organize and share all your content planning</p>
+          <p>✓ Create the best content with the help of AI</p>
+          <p>✓ Make your life Easy!</p>
         </div>
       </div>
 

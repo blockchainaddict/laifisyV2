@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { media_list } from "../data/media_list";
+// import IgPost from "../components/post/IgPost";
 
 // file creation
 import { jsPDF } from "jspdf";
@@ -159,21 +160,18 @@ function NewContentCreation() {
     <label>
       Title:
       <input type="text" name="title" value={formFields.title} onChange={handleFieldChange} />
-      {formErrors.title && <p>{formErrors.title}</p>}
+      {formErrors.title && <p style={{color:'red'}}>{formErrors.title}</p>}
     </label>
     <label>
       Description:
       <textarea name="description" value={formFields.description} onChange={handleFieldChange} />
-      {formErrors.description && <p>{formErrors.description}</p>}
+      {formErrors.description && <p style={{color:'red'}}>{formErrors.description}</p>}
     </label>
-    {/* <label>
-      Image/Video:
-      <input type="file" name="mediaFile" onChange={handleFileChange} />
-      {formErrors.mediaFile && <p>{formErrors.mediaFile}</p>}
-    </label> */}
     <button type="submit" disabled={!isFormValid}>Create</button>
   </form>
 )}
+
+    {/* <IgPost/> */}
     </div>
   );
 }

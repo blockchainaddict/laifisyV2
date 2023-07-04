@@ -41,11 +41,17 @@ $app-gradient-1: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
     }
 
     .hero{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
         margin-bottom: 40px;
         text-align: center;
 
+
         .hero-content{
             margin: 10px 0;
+            width: fit-content;
+            text-align: left;
         }
         h1 {
             color: $app-primary;
