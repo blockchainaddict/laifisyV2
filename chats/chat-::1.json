@@ -1,0 +1,32 @@
+[
+ {
+  "user": "Me",
+  "message": "Say 1 word about Santiago.",
+  "timestamp": 1675807101479
+ },
+ {
+  "user": "Gpt",
+  "message": "\n\nMotivated.",
+  "timestamp": 1675807102927
+ },
+ {
+  "user": "Me",
+  "message": "Another one please.",
+  "timestamp": 1675807111230
+ },
+ {
+  "user": "Gpt",
+  "message": "\n\nDedicated.",
+  "timestamp": 1675807112891
+ },
+ {
+  "user": "Me",
+  "message": "Thank you.",
+  "timestamp": 1675807274514
+ },
+ {
+  "user": "Gpt",
+  "message": "",
+  "timestamp": 1675807274514
+ }
+]
