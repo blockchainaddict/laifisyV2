@@ -27,6 +27,8 @@ const GenericOrgPost = (props) => {
                 <div key={index}>
                   <strong>Scene {scene.sceneNumber}:</strong> {scene.sceneDescription}
                 </div>))}
+
+                {props.likes && props.likes.length > 0 ? <p> <b>Likes:</b> {props.likes}</p> : null}
             </div>
             
 

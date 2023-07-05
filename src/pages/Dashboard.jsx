@@ -37,30 +37,31 @@ const Dashboard = () => {
 
     // Convert select options to actual date filters
     function convertDates(filter) {
-        const today = new Date();
-        let startDate, endDate;
-    
-        switch(filter) {
-        case 'today':
-            startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-            endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
-            break;
-        case 'this_week':
-            const firstDayOfWeek = today.getDate() - today.getDay();
-            startDate = new Date(today.getFullYear(), today.getMonth(), firstDayOfWeek);
-            endDate = new Date(today.getFullYear(), today.getMonth(), firstDayOfWeek + 7);
-            break;
-        case 'this_month':
-            startDate = new Date(today.getFullYear(), today.getMonth(), 1);
-            endDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-            break;
-        default:
-            startDate = null;
-            endDate = null;
-        }
-    
-        return { startDate, endDate };
-    }
+      const today = new Date();
+      let startDate, endDate;
+  
+      switch(filter) {
+      case 'today':
+          startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+          endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59);
+          break;
+      case 'this_week':
+          const firstDayOfWeek = today.getDate() - today.getDay();
+          startDate = new Date(today.getFullYear(), today.getMonth(), firstDayOfWeek);
+          endDate = new Date(today.getFullYear(), today.getMonth(), firstDayOfWeek + 7);
+          break;
+      case 'this_month':
+          startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+          endDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+          break;
+      default:
+          startDate = null;
+          endDate = null;
+      }
+  
+      return { startDate, endDate };
+  }
+  
 
 
   return (
@@ -120,15 +121,15 @@ const Dashboard = () => {
                     })
                     .filter(item => {
                       if (dateFilter) {
-                        const { startDate, endDate } = convertDates(dateFilter);
-                        const itemDate = new Date(item.postDate.split('/').reverse().join('-'));
-                        return itemDate >= startDate && itemDate < endDate;
+                          const { startDate, endDate } = convertDates(dateFilter);
+                          const itemDate = new Date(item.postDate);
+                          return itemDate >= startDate && itemDate < endDate;
                       }
                       return true;
-                    })
+                  })
                     .filter(item => {
                       if (typeFilter) {
-                        return item.format === typeFilter;
+                        return item.type === typeFilter;
                       }
                       return true;
                     })
@@ -147,11 +148,11 @@ const Dashboard = () => {
                             : part
                         ))
                       })) : [];
-                      return <GenericOrgPost title={item.title} audio={item.audio} script={script} link={item.mediaURL} key={index} />;
+                      return <GenericOrgPost title={item.title} audio={item.audio} script={script} link={item.mediaURL} likes={item.likes} key={index} />;
                     })
                 : allPosts.map((item, index)=>{
                     let script = item.script ? item.script : [];
-                    return <GenericOrgPost title={item.title} audio={item.audio} script={script} link={item.mediaURL} key={index} />
+                    return <GenericOrgPost title={item.title} audio={item.audio} script={script} link={item.mediaURL} likes={item.likes} key={index} />
                   })
             }
             
