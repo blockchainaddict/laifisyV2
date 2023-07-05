@@ -13,6 +13,8 @@ header {
     }
   
     .navigation {
+      font-weight: 600;
+
       ul {
         list-style: none;
         padding: 0;
@@ -29,6 +31,7 @@ header {
   
             &:hover {
               color: #0095f6;
+              cursor: pointer;
             }
           }
         }

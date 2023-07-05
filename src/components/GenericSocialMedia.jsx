@@ -143,7 +143,7 @@ const GenericSocialMedia = (props) => {
                         part
                     ));
                   }
-                  return <GenericOrgPost title={item.title} audio={item.audio} description={description} key={index}/>;
+                  return <GenericOrgPost title={item.title} audio={item.audio} script={item.script} description={description} key={index}/>;
                 })
               : 'Loading'}
 

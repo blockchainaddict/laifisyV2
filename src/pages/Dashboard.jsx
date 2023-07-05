@@ -28,10 +28,10 @@ const Dashboard = () => {
         setDateFilter(event.target.value);
       };
       
-      const handleTypeFilterChange = (event) => {
+    const handleTypeFilterChange = (event) => {
         setTypeFilter(event.target.value);
       };
-      const handleTextFilterChange = (event) => {
+    const handleTextFilterChange = (event) => {
         setTextFilter(event.target.value);
       };
 
@@ -65,97 +65,99 @@ const Dashboard = () => {
 
   return (
     <div className='dashboard-wrapper'>
-        <h2 style={{textAlign:'center', margin:'40px 0'}}>Dashboard</h2>
 
         {/* filters */}
-        <div className="filters">
+        <aside className="filters">
             <h3>Filters</h3>
             <div className="filters-wrapper">
-              <div className='filter-container'>
-                <label><b>Social:</b> </label>
-                <select onChange={handleSocialFilterChange}>
-                  <option value="">All</option>
-                  <option value="TikTok">TikTok</option>
-                  <option value="IG">IG</option>
-                  <option value="Pinterest">Pinterest</option>
-                </select>
-              </div>
-              <div className='filter-container'>
-                <label><b>Date:</b> </label>
-                <select onChange={handleDateFilterChange}>
-                  <option value="">All</option>
-                  <option value="today">Today</option>
-                  <option value="this_week">This Week</option>
-                  <option value="this_month">This Month</option>
-                </select>
-              </div>
-              <div className='filter-container'>
-                <label> <b>Type:</b> </label>
-                <select onChange={handleTypeFilterChange}>
-                  <option value="">All</option>
-                  <option value="post">Post</option>
-                  <option value="story">Story</option>
-                </select>
-              </div>
-              <div className='filter-container'>
-                <label><b>Words:</b></label>
-                <input type="text" onChange={handleTextFilterChange} placeholder='Type any word'/>
-              </div>
+                <div className='filter-container'>
+                  <label><b>Platform:</b> </label>
+                  <select onChange={handleSocialFilterChange}>
+                    <option value="">All</option>
+                    <option value="TikTok">TikTok</option>
+                    <option value="IG">IG</option>
+                    <option value="Pinterest">Pinterest</option>
+                  </select>
+                </div>
+                <div className='filter-container'>
+                  <label><b>Date:</b> </label>
+                  <select onChange={handleDateFilterChange}>
+                    <option value="">All</option>
+                    <option value="today">Today</option>
+                    <option value="this_week">This Week</option>
+                    <option value="this_month">This Month</option>
+                  </select>
+                </div>
+                <div className='filter-container'>
+                  <label> <b>Type:</b> </label>
+                  <select onChange={handleTypeFilterChange}>
+                    <option value="">All</option>
+                    <option value="post">Post</option>
+                    <option value="story">Story</option>
+                  </select>
+                </div>
+                <div className='filter-container'>
+                  <label><b>Words:</b></label>
+                  <input type="text" onChange={handleTextFilterChange} placeholder='Type any word'/>
+                </div>
             </div>
-          </div>
+          </aside>
 
-          <h2> Content </h2>
+          <section>
+            <h2 style={{textAlign:'center', margin:'40px 0'}}>Dashboard</h2>
 
-          <section className='dashboard-posts-section'>
+            <h2> Content </h2>
+            <div className='dashboard-posts-section'>
             
-
-            {allPosts ? allPosts
-                .filter(item => {
-                    if (socialFilter) {
-                      return item.social === socialFilter;
-                    }
-                    // If no type filter is selected, return all posts
-                    return true;
+            {
+              allPosts
+                ? allPosts
+                    .filter(item => {
+                      if (socialFilter) {
+                        return item.platform === socialFilter;
+                      }
+                      return true;
+                    })
+                    .filter(item => {
+                      if (dateFilter) {
+                        const { startDate, endDate } = convertDates(dateFilter);
+                        const itemDate = new Date(item.postDate.split('/').reverse().join('-'));
+                        return itemDate >= startDate && itemDate < endDate;
+                      }
+                      return true;
+                    })
+                    .filter(item => {
+                      if (typeFilter) {
+                        return item.format === typeFilter;
+                      }
+                      return true;
+                    })
+                    .filter(item => {
+                      if (textFilter) {
+                        return item.script && item.script.some(scene => scene.sceneDescription.toLowerCase().includes(textFilter.toLowerCase()));
+                      }
+                      return true;
+                    })
+                    .map((item, index) => {
+                      let script = item.script ? item.script.map((scene) => ({
+                        ...scene,
+                        sceneDescription: scene.sceneDescription.split(new RegExp(`(${textFilter})`, 'gi')).map((part, i) => (
+                          part.toLowerCase() === textFilter.toLowerCase()
+                            ? <strong style={{color:'blue'}} key={i}>{part}</strong>
+                            : part
+                        ))
+                      })) : [];
+                      return <GenericOrgPost title={item.title} audio={item.audio} script={script} link={item.mediaURL} key={index} />;
+                    })
+                : allPosts.map((item, index)=>{
+                    let script = item.script ? item.script : [];
+                    return <GenericOrgPost title={item.title} audio={item.audio} script={script} link={item.mediaURL} key={index} />
                   })
-                .filter(item => {
-                  if (dateFilter) {
-                    const { startDate, endDate } = convertDates(dateFilter);
-                    const itemDate = new Date(item.date.split('/').reverse().join('-'));
-                    return itemDate >= startDate && itemDate < endDate;
-                  }
-                  // If no date filter is selected, return all posts
-                  return true;
-                })
-                .filter(item => {
-                  if (typeFilter) {
-                    return item.format === typeFilter;
-                  }
-                  // If no type filter is selected, return all posts
-                  return true;
-                })
-                .filter(item => {
-                  if (textFilter) {
-                    return item.description.toLowerCase().includes(textFilter.toLowerCase());
-                  }
-                  return true;
-                })
-                .map((item, index) => {
-                  let description = item.description;
-                  if (textFilter) {
-                    const parts = item.description.split(new RegExp(`(${textFilter})`, 'gi'));
-                    description = parts.map((part, i) => (
-                      part.toLowerCase() === textFilter.toLowerCase() ?
-                        <strong style={{color:'blue'}} key={i}>{part}</strong> :
-                        part
-                    ));
-                  }
-                  return <GenericOrgPost title={item.title} audio={item.audio} description={description} key={index}/>;
-                })
-              : allPosts.map((item, index)=>{
-                return <GenericOrgPost title={item.title} audio={item.audio} description={item.description} key={index}/>
-              })}
-
-        </section>
+            }
+            
+            
+                    </div>
+          </section>
     </div>
   )
 }

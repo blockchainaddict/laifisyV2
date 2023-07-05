@@ -1,183 +1,189 @@
 // App Colors ---------------------------------------
-$app-primary: #3498db; // Primary color of your app
-$app-secondary: #482c50; // Secondary color of your app
+$app-1: rgb(255, 163, 255);
+$app-2: rgb(231, 198, 255);
+$app-3: rgb(200, 182, 255);
+$app-4: rgb(184, 192, 255);
+$app-5: rgb(187, 208, 255);
 
 // Gradients
-$app-gradient-1: linear-gradient(to right, #12c2e9, #c471ed, #f64f59); 
+$app-gradient-1: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
 
 // End of App Colors --------------------------------
 
 .home-wrapper {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-  
-    p {
-      color: #666;
-      font-size: 18px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+
+  p {
+    color: #666;
+    font-size: 18px;
+  }
+
+  .app-name {
+    position: relative;
+    color: $app-1;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px $app-2;
+
+    &:hover {
+      span {
+        color: $app-5;
+        text-shadow: 2px 2px $app-1;
+      }
     }
 
-    .app-name{
-            position: relative;
-            color: $app-primary;
-            font-size: 2.5em;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 2px 2px $app-secondary;
-          
-            &:hover {
-              
-              span{
-                color: $app-secondary;
-                text-shadow: 2px 2px $app-primary;
-              }
-              
-            }
-
-            span{
-              
-            }
-            
-            h1{
-                font-size: 2em;
-                text-align: center;
-            }
-            
-          
+    span {
     }
 
-    .hero{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-        margin-bottom: 40px;
-        text-align: center;
-
-
-        .hero-content{
-            margin: 80px 0;
-            width: 80%;
-            text-align: left;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            justify-items: center;
-            gap: 10px; /* adjust this to add space between the items */
-
-            .hero1, .hero2, .hero3{
-              width: 500px;
-              p{
-                font-size: 1.2em;
-              }
-            }
-            .hero1{
-            }
-            .hero2{
-              margin-top: 100px;
-            }
-            .hero3{
-              margin-top: -150px;
-            }
-          }
-
-
-
-        h1 {
-            color: $app-primary;
-            font-size: 24px;
-            margin-bottom: 20px;
-          }
-    }
-
-    .info-wrapper-h3{
+    h1 {
+      font-size: 2em;
       text-align: center;
-      margin-bottom: 20px;
+    }
+  }
 
-      
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+
+    .home-img{
+      z-index: -1;
+      position: absolute;
+      width: 1500px;
+      top: -300px;
+      left: -200px;
+      opacity: 0.3;
     }
 
-    .info-wrapper{
-      padding: 20px;
-      background-color: rgba($color: $app-primary, $alpha: .3) ;
-      margin-bottom: 40px;
-      border-radius: 10px;
-
-      font-size: 1.1em;
-
-      ul{
-        list-style: none;
-
-        li{
-          margin-bottom: 5px;
-        }
-      }
-
-      .simple-steps{
-        &:hover{
-          color: #3498db;
-          cursor: pointer;
-        }
-      }
-
-      .li-with-popup{
-        position: relative;
-
-        .home-popup{
-          position: absolute;
-          top: 0;
-          right: 0;
-          padding: 10px;
-          border-radius: 10px;
-          background-color: rgba($color: $app-secondary, $alpha: 0.95);
-
-          p{
-            color: white;
-          }
-        }
-
-      }
-      
-    }
-  
-    .social-medias-list-wrapper {
-      padding: 20px;
-      border: 1px solid $app-primary;
-      border-radius: 10px;
-      border-width: 2px;
+    .hero-content {
+      margin: 80px 0;
+      padding: 40px;
+      width: 80%;
+      text-align: left;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+      gap: 10px; /* adjust this to add space between the items */
+      border-radius: 20px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      background-color: white;
 
-      background-color: rgba($color: $app-primary, $alpha: 0.1);
-
-
-      h3 {
-        color: #333;
-        font-size: 20px;
-        margin-bottom: 20px;
+      .hero1,
+      .hero2,
+      .hero3 {
+        width: 500px;
+        z-index: 1;
+        p {
+          font-size: 1.2em;
+        }
       }
-  
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 10px;
-  
-        li {
-          color: #666;
-          font-size: 16px;
-          margin-bottom: 5px;
-          font-weight: 600;
-  
-          a {
-            color: #0095f6;
-            text-decoration: none;
-            transition: all 0.3s ease-in-out;
-  
-            &:hover {
-              color: #0077b6;
-            }
+      .hero1 {
+      }
+      .hero2 {
+        margin-top: 100px;
+      }
+      .hero3 {
+        margin-top: -150px;
+      }
+    }
+
+    h1 {
+      color: $app-1;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .info-wrapper-h3 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .info-wrapper {
+    padding: 20px;
+    background-color: rgba($color: $app-5, $alpha: 0.5);
+    margin-bottom: 40px;
+    border-radius: 10px;
+
+    font-size: 1.1em;
+
+    ul {
+      list-style: none;
+
+      li {
+        margin-bottom: 5px;
+      }
+    }
+
+    .simple-steps {
+      &:hover {
+        color: #3498db;
+        cursor: pointer;
+      }
+    }
+
+    .li-with-popup {
+      position: relative;
+
+      .home-popup {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgba($color: $app-2, $alpha: 0.95);
+
+        p {
+          color: white;
+        }
+      }
+    }
+  }
+
+  .social-medias-list-wrapper {
+    padding: 20px;
+    border: 1px solid $app-1;
+    border-radius: 10px;
+    border-width: 2px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+    background-color: rgba($color: $app-1, $alpha: 0.1);
+
+    h3 {
+      color: #333;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 10px;
+
+      li {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 5px;
+        font-weight: 600;
+
+        a {
+          color: #0095f6;
+          text-decoration: none;
+          transition: all 0.3s ease-in-out;
+
+          &:hover {
+            color: #0077b6;
           }
         }
       }
     }
   }
-  
+}

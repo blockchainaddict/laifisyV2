@@ -9,15 +9,7 @@ $app-font: 'Roboto', sans-serif; // Change this to any Google font you'd like
 @import './modules/Create.scss';
 @import './modules/Posts.scss';
 
-// App Colors ---------------------------------------
-$app-primary: #3498db; // Primary color of your app
-$app-secondary: #482c50; // Secondary color of your app
-
-// Gradients
-$app-gradient-1: linear-gradient(to left, #2193b0, #6dd5ed);
-; 
-
-// End of App Colors --------------------------------
+@import 'variables';
 
 body {
   font-family: $app-font;
@@ -38,6 +30,19 @@ h3{
 }
 
 // Generic Button
+.button-0{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: none;
+  border: none;
+
+  &:hover{
+    cursor: pointer;
+  }
+}
 .button-1 {
     padding: 10px 20px;
     border: none;
@@ -73,20 +78,21 @@ h3{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(38, 106, 135, 0.95); /* semi-transparent background */
+    background-color: rgba($app-5, 0.95); /* semi-transparent background */
     z-index: 1000; /* make sure it's on top of other page content */
 
-    max-width: 80%;    height: fit-content;
+    max-width: 400px;    
+    height: fit-content;
     margin: auto;
-    padding: 60px;
-    border-radius: 20px;
-
-    
+    padding: 30px;
+    border-radius: 20px;    
   }
 
 
 // Tiktok
 .tiktok_org_post_wrapper {
+  // for button
+    position: relative;
     border: 1px solid #e6e6e6;
     border-radius: 5px;
     padding: 20px;
@@ -98,6 +104,9 @@ h3{
     }
   
     .tiktok-title {
+      // to avoid messing up the botton interaction
+      pointer-events: none;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -112,12 +121,22 @@ h3{
     }
   
     .post-content {
+
+      min-width: 350px;
+
       p {
         margin: 0 0 10px;
-        color: #ffffff;
+        color: #000000;
         &:last-child {
           margin-bottom: 0;
         }
+      }
+
+      .post-text{
+        background-color:rgba($color: $app-3, $alpha: 1);
+        padding: 20px;
+        border-radius: 5px;
+        margin-bottom: 40px;
       }
     }
   }
