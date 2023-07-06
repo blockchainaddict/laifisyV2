@@ -1,0 +1,38 @@
+const IG = [
+    {
+        platform: 'IG',
+        userId: null,
+        postId: null,
+        title: "1 IG Post",
+        caption: "Super instagram post with some #hashtags #children #happy",
+        type: 'post',
+        mediaURL: null,
+        postDate: new Date('2023-07-03T14:30:00'),
+        likes: null,
+        comments: null,
+        location: null,
+        hashtags: ['children', 'happy'],
+        taggedUsers: [],
+        audio: "IG Audio name",
+        script: null,
+    },
+    {
+        platform: 'IG',
+        userId: null,
+        postId: null,
+        title: "2 IG Story",
+        caption: "Scene of a girl sitting in the sunset",
+        type: 'story',
+        mediaURL: 'https://www.instagram.com/p/CuSAoRku_2C/?utm_source=ig_web_button_share_sheet&igshid=MzRlODBiNWFlZA==',
+        postDate: new Date('2023-07-03T19:30:00'),
+        likes: '35',
+        comments: null,
+        location: null,
+        hashtags: [],
+        taggedUsers: [],
+        audio: "IG Audio name",
+        script: null,
+    },
+];
+
+export default IG;

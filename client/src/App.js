@@ -11,6 +11,8 @@ import Create from './pages/Create';
 import SocialMedia from './pages/SocialMedia';
 import Posts from './pages/Posts';
 import Dashboard from './pages/Dashboard';
+import Admin from './pages/Admin';
+import User from './pages/User';
 
 function App() {
   return (
@@ -20,6 +22,10 @@ function App() {
 
     <Routes>
         <Route path="/" exact={true} element={<Home/>}/>
+
+        {/* Admin */}
+        <Route path="/admin" exact={true} element={<Admin/>}/>
+        <Route path="/users/:id" element={<User/>}/>
 
         {/* App */}
         <Route path="/dashboard" exact={true}  element={<Dashboard/>}/>

@@ -1,0 +1,38 @@
+const Pinterest = [
+    {
+        platform: 'Pinterest',
+        userId: null,
+        postId: null,
+        title: "1 Pinterest Post",
+        caption: "1 Pinterest Post",
+        type: 'post',
+        mediaURL: null,
+        postDate: new Date('2023-07-03T19:30:00'),
+        likes: null,
+        comments: null,
+        location: null,
+        hashtags: [],
+        taggedUsers: [],
+        audio: "pinterest Audio name",
+        script: null,
+    },
+    {
+        platform: 'Pinterest',
+        userId: null,
+        postId: null,
+        title: "2 Pinterest Post",
+        caption: "2 Pinterest Post",
+        type: 'post',
+        mediaURL: null,
+        postDate: new Date('2023-07-03T19:30:00'),
+        likes: null,
+        comments: null,
+        location: null,
+        hashtags: [],
+        taggedUsers: [],
+        audio: "pinterest Audio name",
+        script: null,
+    },
+];
+
+export default Pinterest;

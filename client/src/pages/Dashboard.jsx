@@ -1,17 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // import children components
 import GenericOrgPost from '../components/GenericOrgPost';
 
 // import all social dbs
-import TikTok from "../data/TikTok";
-import IG from "../data/IG";
-import Pinterest from "../data/Pinterest";
+// import TikTok from "../data/TikTok";
+// import IG from "../data/IG";
+// import Pinterest from "../data/Pinterest";
 
-const allPosts = [...TikTok, ...IG, ...Pinterest];
-console.log('H E R E 0- - - - -', allPosts);
+// const allPosts = [...TikTok, ...IG, ...Pinterest];
+// console.log('H E R E 0- - - - -', allPosts);
 
 const Dashboard = () => {
+
+   // Fetch DB JSON
+   const [contents, setContents] = useState([]);
+   const [filteredContents, setFilteredContents] = useState([]);
+
+   useEffect(() => {
+    const fetchContents = async () => {
+      try {
+        const response = await fetch('http://localhost:3500/content'); // Replace with the actual API route for fetching users
+        if (response.ok) {
+          const data = await response.json();
+          setContents(data);
+          setFilteredContents(data);  // Initially, all users are shown
+        } else {
+          console.error('Failed to fetch content');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchContents();
+  }, []);
 
     // Filters
     const [socialFilter, setSocialFilter] = useState(null);
@@ -19,15 +42,27 @@ const Dashboard = () => {
     const [typeFilter, setTypeFilter] = useState(null);
     const [textFilter, setTextFilter] = useState('');
 
+    useEffect(() => {
+      const filterContents = () => {
+        const newFilteredContents = contents.filter(content => {
+          return  (socialFilter ? content.platform.includes(socialFilter) : true) && 
+                  (dateFilter ? (new Date(content.postDate) >= convertDates(dateFilter).startDate && new Date(content.postDate) <= convertDates(dateFilter).endDate) : true) &&
+                  (typeFilter ? content.type === typeFilter : true) &&
+                  (textFilter ? content.description === textFilter : true)
+        });
+        setFilteredContents(newFilteredContents);
+      };
+      
+    filterContents();
+  }, [socialFilter, dateFilter, typeFilter, contents]);
+
     // Filters
     const handleSocialFilterChange = (event) => {
         setSocialFilter(event.target.value);
-        console.log('S O C I A L F I L T E R' + socialFilter);
       };
     const handleDateFilterChange = (event) => {
         setDateFilter(event.target.value);
       };
-      
     const handleTypeFilterChange = (event) => {
         setTypeFilter(event.target.value);
       };
@@ -61,8 +96,6 @@ const Dashboard = () => {
   
       return { startDate, endDate };
   }
-  
-
 
   return (
     <div className='dashboard-wrapper'>
@@ -75,9 +108,11 @@ const Dashboard = () => {
                   <label><b>Platform:</b> </label>
                   <select onChange={handleSocialFilterChange}>
                     <option value="">All</option>
+                    <option value="Instagram">IG</option>
                     <option value="TikTok">TikTok</option>
-                    <option value="IG">IG</option>
                     <option value="Pinterest">Pinterest</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="Twitter">Twitter</option>
                   </select>
                 </div>
                 <div className='filter-container'>
@@ -110,9 +145,9 @@ const Dashboard = () => {
             <h2> Content </h2>
             <div className='dashboard-posts-section'>
             
-            {
-              allPosts
-                ? allPosts
+            {/* {
+              contents
+                ? contents
                     .filter(item => {
                       if (socialFilter) {
                         return item.platform === socialFilter;
@@ -150,11 +185,29 @@ const Dashboard = () => {
                       })) : [];
                       return <GenericOrgPost title={item.title} audio={item.audio} script={script} link={item.mediaURL} likes={item.likes} key={index} />;
                     })
-                : allPosts.map((item, index)=>{
+                : contents.map((item, index)=>{
                     let script = item.script ? item.script : [];
                     return <GenericOrgPost title={item.title} audio={item.audio} script={script} link={item.mediaURL} likes={item.likes} key={index} />
                   })
-            }
+            } */}
+
+              {filteredContents.map((item, index) => {
+                return (
+                  <GenericOrgPost 
+                    title={item.title}
+                    caption={item.caption}
+                    description={item.description}
+                    type={item.type}
+                    postDate={item.postDate}
+                    brand={item.brand}
+                    link={item.mediaURL} 
+                    likes={item.likes} 
+                    audio={item.audio}
+                    key={index} 
+                  />
+                );
+              })}
+
             
             
                     </div>

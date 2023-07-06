@@ -19,21 +19,19 @@ const GenericOrgPost = (props) => {
           <div className="post-content">
             <div className="post-text">
               <p> <b>Title:</b> {props.title}</p>
+              <p> <b>Caption:</b> {props.caption}</p>
+              <p> <b>Description:</b> {props.description}</p>
+              <p> <b>Type:</b> {props.type}</p>
+              <p> <b>Post Date:</b> {props.postDate}</p>
+              <p> <b>Brand:</b> {props.brand}</p>
               <p> <b>Audio:</b> {props.audio}</p>
-
-              {props.script && props.script.length > 0 ? <p><b><u>Scenes</u></b></p> : null}
-              
-              {props.script && props.script.map((scene, index) => (
-                <div key={index}>
-                  <strong>Scene {scene.sceneNumber}:</strong> {scene.sceneDescription}
-                </div>))}
 
                 {props.likes && props.likes.length > 0 ? <p> <b>Likes:</b> {props.likes}</p> : null}
             </div>
             
 
             <div className="post-overlay-buttons">
-              {props.link ? <button className="button-2 view-link"> <a href={props.link} target="_blank" rel="noreferrer">Go To Post</a></button> : <div></div> }
+              {props.mediaURL ? <button className="button-2 view-link"> <a href={props.mediaURL} target="_blank" rel="noreferrer">Go To Post</a></button> : <div></div> }
               <button className="button-2 close-overlay" onClick={() => setIsOpen(!isOpen)}>Close</button>
             </div>
           </div>

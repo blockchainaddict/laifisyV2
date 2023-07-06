@@ -1,33 +1,39 @@
-module.exports = (sequelize, dataTypes) => {
-    let alias = "User";
-    
-    let cols = {
+const { DataTypes } = require('sequelize');
+
+module.exports = (sequelize) => {
+    const User = sequelize.define('User', {
         id: {
-            type: dataTypes.STRING(120),
+            type: DataTypes.INTEGER,
+            allowNull: false,
             primaryKey: true,
-            allowNull: false
+            autoIncrement: true
         },
         name: {
-            type: dataTypes.STRING(30),
+            type: DataTypes.STRING(30),
+            allowNull: false
+        },
+        username: {
+            type: DataTypes.STRING(30),
+            allowNull: false
+        },
+        password: {
+            type: DataTypes.STRING(255),
+            allowNull: false
+        },
+        status: {
+            type: DataTypes.ENUM('master', 'user', 'client'),
             allowNull: false
         }
-        
+    }, {
+        tableName: 'user',
+        timestamps: false
+    });
+
+    User.associate = function (models) {
+        User.hasMany(models.Content, {
+            foreignKey: 'user_id'
+        });
     };
 
-    let config = {
-        tableName: "user",
-        timestamps: false
-    }
-
-    const User = sequelize.define(alias, cols, config);
-
-    // Relational aspects
-    User.associate = function(models){
-        User.hasMany(models.Message, {
-            as: 'messages',
-            foreignKey: "user_id",
-        })
-    }
-
     return User;
-}
+};
