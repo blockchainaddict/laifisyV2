@@ -18,15 +18,17 @@ const GenericOrgPost = (props) => {
         <div className="overlay">
           <div className="post-content">
             <div className="post-text">
+
               <p> <b>Title:</b> {props.title}</p>
               <p> <b>Caption:</b> {props.caption}</p>
-              <p> <b>Description:</b> {props.description}</p>
+              {props.description ? <p> <b>Description:</b> {props.description}</p> : null}
               <p> <b>Type:</b> {props.type}</p>
-              <p> <b>Post Date:</b> {props.postDate}</p>
-              <p> <b>Brand:</b> {props.brand}</p>
-              <p> <b>Audio:</b> {props.audio}</p>
+              {props.postDate ?<p> <b>Post Date:</b> {props.postDate}</p> : null}
+              {props.brand ? <p> <b>Brand:</b> {props.brand}</p> : null}
+              {props.audio ? <p> <b>Audio:</b> {props.audio}</p> : null}
 
-                {props.likes && props.likes.length > 0 ? <p> <b>Likes:</b> {props.likes}</p> : null}
+              {props.likes && props.likes.length > 0 ? <p> <b>Likes:</b> {props.likes}</p> : null}
+           
             </div>
             
 

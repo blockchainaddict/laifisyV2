@@ -35,11 +35,13 @@ const User = () => {
 
   return (
     <div className='user-wrapper'>
-      <h2 className='user-name'>{user.name}</h2>
+    <h2 className='user-name'>{user.name}</h2>
+    <div className='user-details'>
       <p> <b>Username:</b> {user.username}</p>
       <p><b>Status:</b> {user.status}</p>
       <p><b>Number of contents:</b> {user.Contents.length}</p>
     </div>
+  </div>
   );
 };
 

@@ -88,9 +88,9 @@ const Admin = () => {
         <h1>User List</h1>
         {filteredUsers.map(user => (
           <div key={user.id}>
-            <p>Name: {user.name}</p>
-            <p>Username: {user.username}</p>
-            <p>Status: {user.status}</p>
+            <p><b>Name:</b> {user.name}</p>
+            <p><b>Username:</b> {user.username}</p>
+            <p><b>Status:</b> {user.status}</p>
             <a href={`/users/${user.id}`}>View</a>
             <hr />
           </div>
