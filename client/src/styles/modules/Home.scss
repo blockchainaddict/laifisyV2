@@ -1,14 +1,4 @@
-// App Colors ---------------------------------------
-$app-1: rgb(255, 163, 255);
-$app-2: rgb(231, 198, 255);
-$app-3: rgb(200, 182, 255);
-$app-4: rgb(184, 192, 255);
-$app-5: rgb(187, 208, 255);
-
-// Gradients
-$app-gradient-1: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
-
-// End of App Colors --------------------------------
+@import '../variables';
 
 .home-wrapper {
   width: 100%;
@@ -35,9 +25,6 @@ $app-gradient-1: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
         color: $app-5;
         text-shadow: 2px 2px $app-1;
       }
-    }
-
-    span {
     }
 
     h1 {

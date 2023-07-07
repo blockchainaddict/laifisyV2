@@ -13,6 +13,7 @@ import Posts from './pages/Posts';
 import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
 import User from './pages/User';
+import SinglePostEdit from './components/SinglePostEdit';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         {/* Admin */}
         <Route path="/admin" exact={true} element={<Admin/>}/>
         <Route path="/users/:id" element={<User/>}/>
+        <Route path="/content/edit/:id" element={<SinglePostEdit/>}/>
 
         {/* App */}
         <Route path="/dashboard" exact={true}  element={<Dashboard/>}/>

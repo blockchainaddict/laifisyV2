@@ -75,7 +75,7 @@ const GenericSocialMedia = (props) => {
   return (
     <div className='gsm-wrapper'>
       
-        <h1>{props.social_media_name}</h1>
+        {/* <h1>{props.social_media_name}</h1> */}
 
         {/* filters */}
         <div className="filters">

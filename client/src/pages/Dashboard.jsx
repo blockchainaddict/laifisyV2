@@ -181,73 +181,29 @@ const Dashboard = () => {
       </aside>
 
       <section>
-        <h2 style={{ textAlign: "center", margin: "40px 0" }}>Dashboard</h2>
+        {/* <h1 style={{ textAlign: "center", margin: "40px 0" }}>Dashboard</h1> */}
 
-        <h2> Content </h2>
-        <div className="dashboard-posts-section">
-          {/* {
-              contents
-                ? contents
-                    .filter(item => {
-                      if (socialFilter) {
-                        return item.platform === socialFilter;
-                      }
-                      return true;
-                    })
-                    .filter(item => {
-                      if (dateFilter) {
-                          const { startDate, endDate } = convertDates(dateFilter);
-                          const itemDate = new Date(item.postDate);
-                          return itemDate >= startDate && itemDate < endDate;
-                      }
-                      return true;
-                  })
-                    .filter(item => {
-                      if (typeFilter) {
-                        return item.type === typeFilter;
-                      }
-                      return true;
-                    })
-                    .filter(item => {
-                      if (textFilter) {
-                        return item.script && item.script.some(scene => scene.sceneDescription.toLowerCase().includes(textFilter.toLowerCase()));
-                      }
-                      return true;
-                    })
-                    .map((item, index) => {
-                      let script = item.script ? item.script.map((scene) => ({
-                        ...scene,
-                        sceneDescription: scene.sceneDescription.split(new RegExp(`(${textFilter})`, 'gi')).map((part, i) => (
-                          part.toLowerCase() === textFilter.toLowerCase()
-                            ? <strong style={{color:'blue'}} key={i}>{part}</strong>
-                            : part
-                        ))
-                      })) : [];
-                      return <GenericOrgPost title={item.title} audio={item.audio} script={script} link={item.mediaURL} likes={item.likes} key={index} />;
-                    })
-                : contents.map((item, index)=>{
-                    let script = item.script ? item.script : [];
-                    return <GenericOrgPost title={item.title} audio={item.audio} script={script} link={item.mediaURL} likes={item.likes} key={index} />
-                  })
-            } */}
-
-          {filteredContents.map((item, index) => {
-            return (
-              <GenericOrgPost
-                title={item.title}
-                caption={item.caption}
-                description={item.description}
-                type={item.type}
-                postDate={item.postDate}
-                brand={item.brand}
-                link={item.mediaURL}
-                likes={item.likes}
-                audio={item.audio}
-                key={index}
-              />
-            );
-          })}
-        </div>
+          <h2> Content </h2>
+          <div className="dashboard-posts-section">
+            
+            {filteredContents.map((item, index) => {
+              return (
+                <GenericOrgPost
+                  id={item.id}
+                  title={item.title}
+                  caption={item.caption}
+                  description={item.description}
+                  type={item.type}
+                  postDate={item.postDate}
+                  brand={item.brand}
+                  link={item.mediaURL}
+                  likes={item.likes}
+                  audio={item.audio}
+                  key={index}
+                />
+              );
+            })}
+          </div>
       </section>
     </div>
   );

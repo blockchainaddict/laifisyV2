@@ -10,6 +10,7 @@ $app-font: 'Roboto', sans-serif; // Change this to any Google font you'd like
 @import './modules/Posts.scss';
 @import './modules/Admin.scss';
 @import './modules/Users.scss';
+@import './modules/SinglePostEdit.scss';
 
 @import 'variables';
 
@@ -119,7 +120,7 @@ h3{
           text-decoration: none;
   
           &:hover {
-            background-color: darken($app-5, 10%);
+            background-color: darken($app-5, 20%);
           }
         }
   
@@ -134,17 +135,19 @@ h3{
   }
 
 // Tiktok
-.tiktok_org_post_wrapper {
+.tiktok-org-post-wrapper {
   // for button
     position: relative;
-    border: 1px solid #e6e6e6;
+    background-color: white;
+    border: 1px solid #d0d0d0;
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
     &:hover {
-      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: 0px 0px 20px rgba($app-1, 1);
+      // transform: scale(1.03);
     }
   
     .tiktok-title {
