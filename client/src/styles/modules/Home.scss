@@ -59,9 +59,15 @@
       grid-template-columns: 1fr 1fr;
       justify-items: center;
       gap: 10px; /* adjust this to add space between the items */
+      border: 1px solid #dddddd;
       border-radius: 20px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      background-color: white;
+      background-color: #f4f4f4;
+
+      img{
+        border-radius: 20px;
+        margin-top: 10px;
+      }
 
       .hero1,
       .hero2,

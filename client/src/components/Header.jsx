@@ -25,9 +25,9 @@ const Header = () => {
 
       <div className="user-profile">
         {/* <img src="/path-to-user-profile-pic.png" alt="User" /> */}
-        <Avatar className='avatar' name="M A G U" round={true} size='50'/>
+        <Avatar className='avatar' name="S V B" round={true} size='50'/>
         <div className="user-details">
-          <p className="username">Maria</p>
+          <p className="username">Santiago</p>
           <a href="/logout">Logout</a>
         </div>
       </div>

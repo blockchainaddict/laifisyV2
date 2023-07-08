@@ -3,7 +3,7 @@ import { media_list } from "../data/media_list";
 // import IgPost from "../components/post/IgPost";
 
 // file creation
-import { jsPDF } from "jspdf";
+// import { jsPDF } from "jspdf";
 
 function NewContentCreation() {
   const [selectedSocialMedia, setSelectedSocialMedia] = useState("");
@@ -49,7 +49,7 @@ function NewContentCreation() {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     // The formFields state now holds the current form data
-    console.log(formFields);
+    // console.log(formFields);
 
     // To create and download a json file
     // add data to the object
@@ -61,49 +61,49 @@ function NewContentCreation() {
     }
 
     // Create a new Blob with the form data
-    const blob = new Blob([JSON.stringify(jsonObject, null, 2)], { type: 'application/json' });
+    // const blob = new Blob([JSON.stringify(jsonObject, null, 2)], { type: 'application/json' });
 
     // Create a link element
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'form_data.json';
+    // const url = URL.createObjectURL(blob);
+    // const link = document.createElement('a');
+    // link.href = url;
+    // link.download = 'form_data.json';
 
     // Append the link to the body and simulate a click to start the download
-    document.body.appendChild(link);
-    link.click();
+    // document.body.appendChild(link);
+    // link.click();
 
     // Clean up by removing the link and revoking the object URL
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    // document.body.removeChild(link);
+    // URL.revokeObjectURL(url);
 
     
     // Create a new jsPDF instance
-    const doc = new jsPDF();
+    // const doc = new jsPDF();
 
     // Set font size for the title
-    doc.setFontSize(22);
+    // doc.setFontSize(22);
 
-    // Add title to the document
-    const title = `Title: ${formFields.title}`;
-    const titleWidth = doc.getStringUnitWidth(title) * doc.internal.getFontSize() / doc.internal.scaleFactor;
-    const titleX = (doc.internal.pageSize.width - titleWidth) / 2;
-    doc.text(title, titleX, 10);
+    // // Add title to the document
+    // const title = `Title: ${formFields.title}`;
+    // const titleWidth = doc.getStringUnitWidth(title) * doc.internal.getFontSize() / doc.internal.scaleFactor;
+    // const titleX = (doc.internal.pageSize.width - titleWidth) / 2;
+    // doc.text(title, titleX, 10);
   
-    // Set font size and style for the description
-    doc.setFontSize(16);
-    doc.setFont(undefined, 'bold');
+    // // Set font size and style for the description
+    // doc.setFontSize(16);
+    // doc.setFont(undefined, 'bold');
   
-    // Add description to the document
-    doc.text(`Description: ${formFields.description}`, 10, 30);
+    // // Add description to the document
+    // doc.text(`Description: ${formFields.description}`, 10, 30);
   
-    // Add selected social media and option
-    doc.setFont(undefined, 'normal');
-    doc.text(`Selected Social Media: ${selectedSocialMedia}`, 10, 50);
-    doc.text(`Selected Option: ${selectedOption}`, 10, 70);
+    // // Add selected social media and option
+    // doc.setFont(undefined, 'normal');
+    // doc.text(`Selected Social Media: ${selectedSocialMedia}`, 10, 50);
+    // doc.text(`Selected Option: ${selectedOption}`, 10, 70);
   
-    // Save the PDF
-    doc.save("form_data.pdf");
+    // // Save the PDF
+    // doc.save("form_data.pdf");
   };
   
   // Validation
