@@ -1,4 +1,7 @@
 const { User, Content } = require('../database/models');
+// Google login
+const { OAuth2Client } = require('google-auth-library');
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // CRUD operations for User
 const getAllUsers = async (req, res) => {
@@ -80,6 +83,26 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const googleLogin = async (req, res) => {
+  const { token }  = req.body;
+  const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+  });
+  const { name, email, picture } = ticket.getPayload();
+
+  // Check if this user already exists in the database
+  const user = await User.findOne({ where: { email } });
+  if (user) {
+    // User already exists, return the user
+    res.status(200).json(user);
+  } else {
+    // If user does not exist, create a new user
+    const newUser = await User.create({ name, email, picture });
+    res.status(201).json(newUser);
+  }
+};
+
 // CRUD operations for Content
 // Define similar functions for other models (Hashtags, TaggedUsers, Scripts, etc.)
 
@@ -91,6 +114,7 @@ module.exports = {
   getUserById,
   updateUser,
   deleteUser,
+  googleLogin
 
   // Content CRUD operations
   // Define similar functions for other models (Hashtags, TaggedUsers, Scripts, etc.)
