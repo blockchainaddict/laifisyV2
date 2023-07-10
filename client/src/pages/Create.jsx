@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { media_list } from "../data/media_list";
-// import IgPost from "../components/post/IgPost";
-
-// file creation
-// import { jsPDF } from "jspdf";
 
 function NewContentCreation() {
+
   const [selectedSocialMedia, setSelectedSocialMedia] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
+
+  const [formErrors, setFormErrors] = useState({});
+  const [isFormValid, setFormValid] = useState(false);
 
   const handleSocialMediaChange = (event) => {
     setSelectedSocialMedia(event.target.value);
     setSelectedOption(""); // Reset the option when social media changes
+   
+    // set form field for social media 
+    setFormFields({
+      ...formFields,
+      platform: selectedSocialMedia
+    });
+    
+    // log the object
+    console.log(formFields);
   };
 
   const handleOptionChange = (event) => {
@@ -23,14 +32,34 @@ function NewContentCreation() {
     media_list.find((media) => media.name === selectedSocialMedia)?.options ||
     [];
 
+    // Create NOW date compatible with SQL
+    const dateNow = () =>{
+      let currentDate = new Date();
+      let timestamp = currentDate.toISOString();
+
+      console.log("Created new item at date: - - - " + timestamp);
+      return timestamp;
+    }
+
   //FORM element - - - - - - - - - - - - - - - -
   const [formFields, setFormFields] = useState({
+    user_id: 1,
+    platform: '',
     title: '',
-    description: ''
+    caption: '',
+    description: '',
+    type: '',
+    mediaURL: '',
+    postDate: '',
+    likes: 0,
+    comments: 0,
+    location: '',
+    audio: '',
+    brand: '',
+    timestamp: ''
   });
   
-  const [formErrors, setFormErrors] = useState({});
-  const [isFormValid, setFormValid] = useState(false);
+
   
   const handleFieldChange = (event) => {
     setFormFields({
@@ -38,73 +67,30 @@ function NewContentCreation() {
       [event.target.name]: event.target.value
     });
   };
-  
-  // const handleFileChange = (event) => {
-  //   setFormFields({
-  //     ...formFields,
-  //     mediaFile: event.target.files[0]
-  //   });
-  // };
+
+  const logObject = ()=>{
+    console.log(formFields);
+  }
   
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    // The formFields state now holds the current form data
-    // console.log(formFields);
-
-    // To create and download a json file
-    // add data to the object
-    let jsonObject = {
-      title: formFields.title,
-      description: formFields.description,
-      social: selectedSocialMedia,
-      format: selectedOption
-    }
-
-    // Create a new Blob with the form data
-    // const blob = new Blob([JSON.stringify(jsonObject, null, 2)], { type: 'application/json' });
-
-    // Create a link element
-    // const url = URL.createObjectURL(blob);
-    // const link = document.createElement('a');
-    // link.href = url;
-    // link.download = 'form_data.json';
-
-    // Append the link to the body and simulate a click to start the download
-    // document.body.appendChild(link);
-    // link.click();
-
-    // Clean up by removing the link and revoking the object URL
-    // document.body.removeChild(link);
-    // URL.revokeObjectURL(url);
-
-    
-    // Create a new jsPDF instance
-    // const doc = new jsPDF();
-
-    // Set font size for the title
-    // doc.setFontSize(22);
-
-    // // Add title to the document
-    // const title = `Title: ${formFields.title}`;
-    // const titleWidth = doc.getStringUnitWidth(title) * doc.internal.getFontSize() / doc.internal.scaleFactor;
-    // const titleX = (doc.internal.pageSize.width - titleWidth) / 2;
-    // doc.text(title, titleX, 10);
-  
-    // // Set font size and style for the description
-    // doc.setFontSize(16);
-    // doc.setFont(undefined, 'bold');
-  
-    // // Add description to the document
-    // doc.text(`Description: ${formFields.description}`, 10, 30);
-  
-    // // Add selected social media and option
-    // doc.setFont(undefined, 'normal');
-    // doc.text(`Selected Social Media: ${selectedSocialMedia}`, 10, 50);
-    // doc.text(`Selected Option: ${selectedOption}`, 10, 70);
-  
-    // // Save the PDF
-    // doc.save("form_data.pdf");
+    setFormFields({
+      ...formFields,
+      timestamp: dateNow()
+    })
+    console.log('Creating new content with:', formFields);
+    fetch('http://localhost:3500/create/', {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(formFields),
+      })
+      .then(response => response.json()) // If the server returns JSON, parse it
+      .then(data => console.log('Success:', data)) // Handle the success case
+      .catch((error) => {
+        console.error('Error:', error); // Handle the error case
+      });
   };
+  
   
   // Validation
   useEffect(() => {
@@ -123,6 +109,10 @@ function NewContentCreation() {
     // If the errors object is empty, the form is valid
     setFormValid(Object.keys(errors).length === 0);
   }, [formFields]);
+
+  const checkAll = () => {
+    console.log('THIS - - - - - ', formFields);
+  }
 
   return (
     <div className="create-wrapper">
@@ -159,19 +149,50 @@ function NewContentCreation() {
   <form onSubmit={handleFormSubmit}>
     <label>
       Title:
-      <input type="text" name="title" value={formFields.title} onChange={handleFieldChange} />
+      <input type="text" name="title" value={formFields.title} onChange={handleFieldChange} onBlur={logObject} />
       {formErrors.title && <p style={{color:'red'}}>{formErrors.title}</p>}
     </label>
     <label>
+      Caption:
+      <input type="text" name="caption" value={formFields.caption} onChange={handleFieldChange} onBlur={logObject}/>
+    </label>
+    <label>
       Description:
-      <textarea name="description" value={formFields.description} onChange={handleFieldChange} />
+      <textarea name="description" value={formFields.description} onChange={handleFieldChange} onBlur={logObject}/>
       {formErrors.description && <p style={{color:'red'}}>{formErrors.description}</p>}
     </label>
+    <label>
+      Post Date:
+      <input type="date" name="post-date" value={formFields.postDate} onChange={handleFieldChange} onBlur={logObject} />
+    </label>
+    <label>
+      Brand:
+      <input type="text" name="brand" value={formFields.brand} onChange={handleFieldChange} onBlur={logObject}/>
+    </label>
+    <label >
+      <select value={selectedOption} onChange={handleOptionChange}>
+            <option value="">Select...</option>
+            <option value="zara">Zara</option>
+            <option value="mcdonalds">McDonals</option>
+            <option value="shell">Shell</option>
+          </select>
+
+    </label>
+    <label>
+      Media URL (link):
+      <input type="text" name="mediaURL" value={formFields.mediaURL} onChange={handleFieldChange} onBlur={logObject}/>
+    </label>
+    <label>
+      Audio:
+      <input type="text" name="audio" value={formFields.audio} onChange={handleFieldChange} onBlur={logObject}/>
+    </label>
+
+    <button onClick={checkAll}>CHECK ALL</button>
+
     <button type="submit" disabled={!isFormValid}>Create</button>
   </form>
 )}
 
-    {/* <IgPost/> */}
     </div>
   );
 }

@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { showLoginPopup, hideLoginPopup } from '../redux/loginPopupSlice';
+
+// import mdoules
+import Login from './Login';
 
 // To create avatars
 import Avatar from 'react-avatar';
 
 const Header = () => {
+  const loginPopupState = useSelector(state => state.loginPopup);
+  const dispatch = useDispatch();
+
+  // useState for showing a login overlay   
+  // const [ showLogin, setShowLogin ] = useState(false);
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+
+  const handleShowLogin = () => {
+    dispatch(showLoginPopup());
+  }
+
   return (
     <header>
       <div className="logo">
@@ -28,9 +46,18 @@ const Header = () => {
         <Avatar className='avatar' name="S V B" round={true} size='50'/>
         <div className="user-details">
           <p className="username">Santiago</p>
+          
+          {isLoggedIn ? 
           <a href="/logout">Logout</a>
+          :
+          <button onClick={handleShowLogin} >Login</button>
+          }
+
         </div>
       </div>
+
+      {loginPopupState.value ? <Login/> : null}
+
     </header>
   );
 };

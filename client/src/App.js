@@ -1,7 +1,6 @@
 import './styles/App.scss';
 import { Route, Routes } from 'react-router-dom';
 
-
 // header to be added to all pages
 import Header from './components/Header'
 
