@@ -29,6 +29,16 @@
     margin-bottom: 20px;
   }
   
+  .user-login-overlay{
+    border: none;
+    background-color: transparent;
+    margin-top: 5px;
+    cursor: pointer;
+
+    &:hover{
+      color: blue;
+    }
+  }
   .close-login-overlay{
     border: 1px solid rgb(191, 191, 191);
     background-color: white;
@@ -36,4 +46,16 @@
     margin-top: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     cursor: pointer;
+  }
+  
+  .create-user-form{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    label{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }

@@ -37,6 +37,8 @@ const User = () => {
     <div className='user-wrapper'>
     <h2 className='user-name'>{user.name}</h2>
     <div className='user-details'>
+      <p> <b>Email:</b> {user.email}</p>
+      <p> <b>Password:</b> {user.password}</p>
       <p> <b>Username:</b> {user.username}</p>
       <p><b>Status:</b> {user.status}</p>
       <p><b>Number of contents:</b> {user.Contents.length}</p>
