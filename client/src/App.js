@@ -13,11 +13,19 @@ import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
 import User from './pages/User';
 import SinglePostEdit from './components/SinglePostEdit';
+import Login from './components/Login';
+
+// Bring redux
+import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
+  // const dispatch = useDispatch();
+
+  const loginState = useSelector((state) => state.login);
+
   return (
     <div>
-    
+
     <Header/>
 
     <Routes>
@@ -30,7 +38,13 @@ function App() {
 
         {/* App */}
         <Route path="/dashboard" exact={true}  element={<Dashboard/>}/>
-        <Route path="/create" exact={true}  element={<Create/>}/>
+
+        {loginState.userInfo ? 
+          <Route path="/create" exact={true}  element={<Create/>}/>
+         : 
+         <Route path="/create" exact={true}  element={<Login/>}/>
+         }
+         
         <Route path="/posts" exact={true}  element={<Posts/>}/>
 
 

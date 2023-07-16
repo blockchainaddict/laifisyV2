@@ -3,6 +3,12 @@ const { User, Content } = require('../database/models');
 const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
+// Requerimos modulo para validar errores en formulario de login
+const { validationResult } = require("express-validator");
+
+// Requerimos modulo para encriptar password
+const bcrypt = require("bcryptjs");
+
 // CRUD operations for User
 const getAllUsers = async (req, res) => {
   try {
@@ -15,12 +21,40 @@ const getAllUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const user = await User.create(req.body);
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const user = await User.create({ ...req.body, password: hashedPassword });
     res.status(201).json(user);
   } catch (error) {
     res.status(500).json({ error: 'Failed to create user' });
   }
 };
+
+const loginUser = async (req, res) => {
+  let userToLog;
+  try {
+    User.findOne({
+      where: {
+        email: req.body.email,
+      }
+    })
+    .then((user) => {
+      if( user != null && bcrypt.compareSync(req.body.password, user.password)){
+        userToLog = user.dataValues; // Sequelize responds with an object with the dataValues key in it
+        req.session.userToLog = userToLog;
+
+         // remember Cookie
+        res.cookie("rememberAccount", userToLog.email, {
+          maxAge: 1000 * 60 * 60,
+        }); //1 hour
+        res.status(200).json({ message: "Login successful", user });
+      } else {
+        res.status(401).json({ error: "Invalid username or password" });
+      }
+    })
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to Find user'})
+  }
+}
 
 const getUserByStatus = async (req, res) => {
   const { status } = req.params;
@@ -110,6 +144,7 @@ module.exports = {
   // User CRUD operations
   getAllUsers,
   createUser,
+  loginUser,
   getUserByStatus,
   getUserById,
   updateUser,

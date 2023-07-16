@@ -38,6 +38,7 @@ const User = () => {
     <h2 className='user-name'>{user.name}</h2>
     <div className='user-details'>
       <p> <b>Email:</b> {user.email}</p>
+      <p> <b>Id:</b> {user.id}</p>
       <p> <b>Password:</b> {user.password}</p>
       <p> <b>Username:</b> {user.username}</p>
       <p><b>Status:</b> {user.status}</p>

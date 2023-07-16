@@ -3,18 +3,12 @@ import React, { useState, useEffect } from "react";
 // import children components
 import GenericOrgPost from "../components/GenericOrgPost";
 
-// import all social dbs
-// import TikTok from "../data/TikTok";
-// import IG from "../data/IG";
-// import Pinterest from "../data/Pinterest";
-
-// const allPosts = [...TikTok, ...IG, ...Pinterest];
-// console.log('H E R E 0- - - - -', allPosts);
-
 const Dashboard = () => {
-  // Fetch DB JSON
+
   const [contents, setContents] = useState([]);
   const [filteredContents, setFilteredContents] = useState([]);
+  const [fetchError, setFetchError] = useState('');
+
 
   useEffect(() => {
     const fetchContents = async () => {
@@ -23,8 +17,10 @@ const Dashboard = () => {
         if (response.ok) {
           const data = await response.json();
           setContents(data);
-          setFilteredContents(data); // Initially, all users are shown
+          setFilteredContents(data); // Initially, all contents are shown
         } else {
+          const errorData = await response.json(); // Parse the error response
+          setFetchError(errorData.message); // Access the message property from the error response
           console.error("Failed to fetch content");
         }
       } catch (error) {
@@ -184,6 +180,8 @@ const Dashboard = () => {
         {/* <h1 style={{ textAlign: "center", margin: "40px 0" }}>Dashboard</h1> */}
 
           <h2> Content </h2>
+
+          { fetchError.length > 0 ? <h1>Auth Error: {fetchError}</h1>  : null}
           <div className="dashboard-posts-section">
             
             {filteredContents.map((item, index) => {

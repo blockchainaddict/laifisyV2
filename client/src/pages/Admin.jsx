@@ -53,6 +53,25 @@ const Admin = () => {
     setStatusFilter(event.target.value);
   };
 
+  // DELETE user - only requires id
+  const handleDeleteUser = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3500/users/${id}`, { // Replace with the actual API route for deleting a user
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(`User deleted:`, data);
+        setUsers(users.filter(user => user.id !== id)); // Remove user from state
+        setFilteredUsers(filteredUsers.filter(user => user.id !== id)); // Remove user from filtered list
+      } else {
+        console.error(`Failed to delete user with id: ${id}`);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
     <div className='admin-wrapper'>
 
@@ -80,21 +99,30 @@ const Admin = () => {
                   </select>
                 </div>
                
-                
             </div>
           </aside>
 
           <section>
-        <h1>User List</h1>
-        {filteredUsers.map(user => (
-          <div key={user.id}>
-            <p><b>Name:</b> {user.name}</p>
-            <p><b>Username:</b> {user.username}</p>
-            <p><b>Status:</b> {user.status}</p>
-            <a href={`/users/${user.id}`}>View</a>
-            <hr />
-          </div>
-        ))}
+              <h1>User List</h1>
+              {filteredUsers.map(user => (
+                <div className='user-content' key={user.id}>
+
+                  <div className="user-content-columns">
+                    <div className="user-content-left">
+                      <p><b>Name:</b> {user.name}</p>
+                      <p><b>Username:</b> {user.username}</p>
+                      <p><b>Status:</b> {user.status}</p>
+                      <a href={`/users/${user.id}`}>View</a>
+                    </div>
+                    <div className="user-content-right">
+                      <button onClick={() => handleDeleteUser(user.id)}>Delete user</button>
+                    </div>
+                  </div>
+
+                  <hr />
+
+                </div>
+              ))}
       </section>
     </div>
   );
