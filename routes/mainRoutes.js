@@ -6,4 +6,8 @@ router.get('/', (req, res)=>{
     res.send('Hi');
 });
 
+router.get('/session', (req, res)=>{
+    res.json(req.session);
+})
+
 module.exports = router;

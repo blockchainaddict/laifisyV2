@@ -39,13 +39,13 @@ export const hideLoginPopup = () => {
   };
 };
 
-export const userLogin = (email, password) => async (dispatch) => {
-  try {
-    const { data } = await axios.post('/api/users/login', { email, password });
-    dispatch(userLoginSuccess(data));
-  } catch (error) {
-    dispatch(userLoginFail(error.response && error.response.data.message
-      ? error.response.data.message
-      : error.message));
-  }
-};
+// export const userLogin = (email, password) => async (dispatch) => {
+//   try {
+//     const { data } = await axios.post('/api/users/login', { email, password });
+//     dispatch(userLoginSuccess(data));
+//   } catch (error) {
+//     dispatch(userLoginFail(error.response && error.response.data.message
+//       ? error.response.data.message
+//       : error.message));
+//   }
+// };

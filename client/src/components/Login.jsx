@@ -5,11 +5,15 @@ import { useNavigate } from 'react-router-dom';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { showLoginPopup, hideLoginPopup } from '../redux/loginPopupSlice';
+import { userLoginSuccess } from '../redux/loginSlice';
+
+// import { userLogin } from './actions';
 
 const Login = () => {
 
   const [ userExists, setUserExists ] = useState(false); //to show either login or create user
   const [ userHasBeenCreated, setUserHasBeenCreated ] = useState(false);
+  const [ userHasBeenLogged, setUserHasBeenLogged ] = useState(false);
   const [ formErrors, setFormErrors ] = useState({});
   const [ isFormValid, setFormValid ] = useState(false);
 
@@ -86,7 +90,8 @@ const Login = () => {
     .then(data => {
       console.log('Success:', data);
       // const { message, userLogged } = data;
-      setUserHasBeenCreated(true);
+      setUserHasBeenLogged(true);
+      dispatch(userLoginSuccess({email: userCredentials.email}))
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -116,6 +121,12 @@ useEffect(() => {
     if (userHasBeenCreated) {
         navigate("/admin");
         handleHideLogin();
+    }
+
+    if (userHasBeenLogged) {
+      navigate("/dashboard");
+      handleHideLogin();
+
     }
 
   return (

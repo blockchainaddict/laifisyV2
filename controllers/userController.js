@@ -46,6 +46,7 @@ const loginUser = async (req, res) => {
         res.cookie("rememberAccount", userToLog.email, {
           maxAge: 1000 * 60 * 60,
         }); //1 hour
+        console.log(`USER LOGGED: ${req.session.userToLog.email}`);
         res.status(200).json({ message: "Login successful", user });
       } else {
         res.status(401).json({ error: "Invalid username or password" });

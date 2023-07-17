@@ -39,6 +39,9 @@ const mainRoutes = require('./routes/mainRoutes'); //
 const userRoutes = require('./routes/userRoutes'); //
 const contentRoutes = require('./routes/contentRoutes'); //
 
+
+app.listen(port, () => console.log(`Listening on 3500!`));
+
 app.use('/', mainRoutes);
 app.use('/users', userRoutes);
 app.use('/content', contentRoutes);
@@ -48,4 +51,3 @@ app.use((req, res, next) => {
     res.status(404).render("error404")
   });
 
-app.listen(port, () => console.log(`Listening on 3500!`));
